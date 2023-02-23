@@ -145,26 +145,26 @@ class _RepeatSampler(object):
 
 class LoadImages:  # for inference
     def __init__(self, path, img_size=640, auto_size=32):
-        # p = str(Path(path))  # os-agnostic
-        # p = os.path.abspath(p)  # absolute path
-        # if '*' in p:
-        #     files = sorted(glob.glob(p, recursive=True))  # glob
-        # elif os.path.isdir(p):
-        #     files = sorted(glob.glob(os.path.join(p, '*.*')))  # dir
-        # elif os.path.isfile(p):
-        #     files = [p]  # files
-        # else:
-        #     raise Exception('ERROR: %s does not exist' % p)
+        p = str(Path(path))  # os-agnostic
+        p = os.path.abspath(p)  # absolute path
+        if '*' in p:
+            files = sorted(glob.glob(p, recursive=True))  # glob
+        elif os.path.isdir(p):
+            files = sorted(glob.glob(os.path.join(p, '*.*')))  # dir
+        elif os.path.isfile(p):
+            files = [p]  # files
+        else:
+            raise Exception('ERROR: %s does not exist' % p)
 
-        # images = [x for x in files if x.split('.')[-1].lower() in img_formats]
-        # videos = [x for x in files if x.split('.')[-1].lower() in vid_formats]
+        images = [x for x in files if x.split('.')[-1].lower() in img_formats]
+        videos = [x for x in files if x.split('.')[-1].lower() in vid_formats]
         
-        p = Path(path)
-        images = []
-        for x in p.rglob("*.jpg"):
-            images.append(str(x))
+#         p = Path(path)
+#         images = []
+#         for x in p.rglob("*.jpg"):
+#             images.append(str(x))
 
-        videos = []
+#         videos = []
         ni, nv = len(images), len(videos)
 
         self.img_size = img_size
